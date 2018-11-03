@@ -1,0 +1,31 @@
+@font-face {
+  font-family:"Kollektif";
+  src: url("kollektif.ttf") format("truetype");
+}
+
+body {
+	margin-top: 7%;
+	margin-bottom: auto;
+	font-family: "Kollektif";
+	color: white;
+
+}
+
+h1 {
+	font-size: 100px;
+	text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
+	text-align: center;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50%;
+}
+
+p {
+	text-align: center;
+	font-size: 30px;
+	text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
+}
