@@ -1,17 +1,20 @@
 $(function(){
 	console.log("page is loaded!");
 
-	var backgroundcolors = ["#FFE0B3", "#B8FFE8", "#FF99B5"]
+	var backgroundcolors = ["#FFE0B3", "#B8FFE8", "#FF99B5", "#FFEF94", "#FFCCD5", "#B8F2FF", "#D199FF", "#FF8E8A"];
 
 	$.get("data/women-in-tech.csv", function(data) {
+		// load csv data into an array
 		var result = $.csv.toArrays(data);
-		console.log(result);
 
+		// get random number for array index
 		var number = Math.floor((Math.random() * (result.length - 1))) + 1;
-		//console.log(number);
-		console.log (result[number][1]);
-		document.getElementById("country").innerHTML = result[number][1];
 
+		var person = result[number][1];
+		// set html name
+		document.getElementById("name").innerHTML = person;
+
+		// get image for html
 		var img = new Image();
 		var div = document.getElementById("photo");
 
@@ -19,32 +22,20 @@ $(function(){
 			div.appendChild(img);
 		}
 
-		img.src = result[number][0]
-
+		img.src = result[number][0];
+		// get info for html
 		document.getElementById("info").innerHTML = result[number][2];
-
+		// add wikipedia link for person's page
 		var str = "read more on wikipedia";
-		//var result = str.link("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" + result[number][1]);
-		var result = str.link("https://en.wikipedia.org/wiki/" + result[number][1]);
+		var result = str.link("https://en.wikipedia.org/wiki/" + person);
 		document.getElementById("link").innerHTML = result;
 
+		// set background color
 		var color = Math.floor((Math.random() * (backgroundcolors.length)));
-		console.log(color);
+
 		document.body.style.backgroundColor = backgroundcolors[color];
+		// add facebook sharing link
+		$("#share").html('<a href="'+ "https://www.facebook.com/sharer/sharer.php?u=en.wikipedia.org/wiki/" + person + '"><i class="fab fa-facebook"></i></a>'); 
 
-		
-		var facebook = link("https://www.facebook.com/sharer/sharer.php?u=" + "en.wikipedia.org/wiki/" + result[number][1]);
-		document.getElementById("button").innerHTML = facebook;
-
-
-
-		// var link = document.createElement('a');
-		// var linkText = document.createTextNode("read more");
-
-		// a.appendChild(linkText);
-		// a.href = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" + result[number][1];
-		// document.getElementById("link").appendChild(a);
-
-		//document.getElementById("link").innerHTML = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" + result[number][1];
 	});
 });
